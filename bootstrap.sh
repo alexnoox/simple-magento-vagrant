@@ -10,6 +10,7 @@ apt-get update
 
 # Install Apache & PHP
 # --------------------
+apt-get install -y git
 apt-get install -y apache2
 apt-get install -y php5
 apt-get install -y libapache2-mod-php5
@@ -69,9 +70,7 @@ mysql -u root -e "FLUSH PRIVILEGES"
 # Download and extract
 if [[ ! -f "/vagrant/httpdocs/index.php" ]]; then
   cd /vagrant/httpdocs
-  wget http://www.magentocommerce.com/downloads/assets/${MAGE_VERSION}/magento-${MAGE_VERSION}.tar.gz
-  tar -zxvf magento-${MAGE_VERSION}.tar.gz
-  mv magento/* magento/.htaccess .
+  git clone https://github.com/alexnoox/magento ./
   chmod -R o+w media var
   chmod o+w app/etc
   # Clean up downloaded file and extracted dir
@@ -80,7 +79,7 @@ fi
 
 
 # Sample Data
-if [[ $SAMPLE_DATA == "true" ]]; then
+if [[ $SAMPLE_DATA == "false" ]]; then
   cd /vagrant
 
   if [[ ! -f "/vagrant/magento-sample-data-${DATA_VERSION}.tar.gz" ]]; then
