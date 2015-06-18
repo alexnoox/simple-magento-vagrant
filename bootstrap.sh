@@ -70,7 +70,7 @@ mysql -u root -e "FLUSH PRIVILEGES"
 # Download and extract
 if [[ ! -f "/vagrant/httpdocs/index.php" ]]; then
   cd /vagrant/httpdocs
-  git clone https://github.com/alexnoox/magento ./
+  git clone git@github.com:alexnoox/magento.git ./
   chmod -R o+w media var
   chmod o+w app/etc
   # Clean up downloaded file and extracted dir
